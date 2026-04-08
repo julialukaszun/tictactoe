@@ -1,0 +1,4 @@
+# ninja log v5
+18	534	7973125341882755	build.ninja	b7c07c0a3c46e722
+0	1885	7973071315068517	CMakeFiles/tictactoe.dir/main.cpp.obj	b809cff464dff4d9
+1886	2183	7973071318027794	tictactoe.exe	129482afb9cfb1e0
