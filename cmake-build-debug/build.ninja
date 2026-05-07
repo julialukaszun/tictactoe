@@ -56,6 +56,13 @@ build CMakeFiles/tictactoe.dir/main.cpp.obj: CXX_COMPILER__tictactoe_unscanned_D
   OBJECT_DIR = CMakeFiles\tictactoe.dir
   OBJECT_FILE_DIR = CMakeFiles\tictactoe.dir
 
+build CMakeFiles/tictactoe.dir/button.cpp.obj: CXX_COMPILER__tictactoe_unscanned_Debug C$:/Users/julia/CLionProjects/tictactoe/button.cpp || cmake_object_order_depends_target_tictactoe
+  DEP_FILE = CMakeFiles\tictactoe.dir\button.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\tictactoe.dir
+  OBJECT_FILE_DIR = CMakeFiles\tictactoe.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target tictactoe
@@ -64,7 +71,7 @@ build CMakeFiles/tictactoe.dir/main.cpp.obj: CXX_COMPILER__tictactoe_unscanned_D
 #############################################
 # Link the executable tictactoe.exe
 
-build tictactoe.exe: CXX_EXECUTABLE_LINKER__tictactoe_Debug CMakeFiles/tictactoe.dir/main.cpp.obj | C$:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/debug/lib/raylib.lib C$:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/debug/lib/raylib.lib
+build tictactoe.exe: CXX_EXECUTABLE_LINKER__tictactoe_Debug CMakeFiles/tictactoe.dir/main.cpp.obj CMakeFiles/tictactoe.dir/button.cpp.obj | C$:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/debug/lib/raylib.lib C$:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/debug/lib/raylib.lib
   FLAGS = -g
   LINK_LIBRARIES = C:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/debug/lib/raylib.lib  C:/Users/julia/.vcpkg-clion/vcpkg/installed/x64-windows/debug/lib/raylib.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\tictactoe.dir

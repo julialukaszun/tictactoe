@@ -1,15 +1,17 @@
 #include "raylib.h"
+#include "button.h"
 
 int main()
 {
     InitWindow(800, 450, "Tic Tac Toe");
 
+    Button tile{{150, 300},{40,40},{RED}};
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-        DrawCircle(50, 50, 50, RED);
+        tile.Draw();
         EndDrawing();
     }
 
