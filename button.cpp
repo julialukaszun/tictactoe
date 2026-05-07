@@ -16,3 +16,12 @@ void Button::Draw() {
     DrawRectangleV(position, size, color);
 
 }
+
+bool Button::isPressed(Vector2 mousePos, bool mousePressed) {
+    Rectangle rect = {position.x, position.y, size.x, size.y};
+
+    if (CheckCollisionPointRec(mousePos, rect) && mousePressed) {
+        return true;
+    }
+    return false;
+}

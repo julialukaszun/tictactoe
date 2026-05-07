@@ -6,7 +6,7 @@ public:
     Button(Vector2 buttonPosition, Vector2 buttonSize, Color buttonColor); //constructor
     ~Button();
     void Draw();
-    bool isPressed;
+    bool isPressed(Vector2 mousePos, bool mousePressed);
 
 private:
     Vector2 position;
