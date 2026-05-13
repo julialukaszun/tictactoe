@@ -7,11 +7,11 @@ public:
     ~Button();
     void Draw();
     bool isPressed(Vector2 mousePos, bool mousePressed);
+    Color color;
 
 private:
     Vector2 position;
     Vector2 size;
-    Color color;
 
 
 
