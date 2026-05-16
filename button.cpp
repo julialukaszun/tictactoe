@@ -1,9 +1,10 @@
 #include "button.h"
 
-Button::Button(Vector2 buttonPosition, Vector2 buttonSize, Color buttonColor) {
+Button::Button(Vector2 buttonPosition, Vector2 buttonSize, Color buttonColor, bool buttonPressed) {
     position = buttonPosition;
     size = buttonSize;
     color = buttonColor;
+    pressed = buttonPressed;
 
 }
 
