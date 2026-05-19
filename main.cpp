@@ -1,38 +1,72 @@
 #include "raylib.h"
 #include <iostream>
 #include "button.h"
+#include "player.h"
 
 bool checkWin(Button tiles[]) {
-    if (tiles[0].pressed && tiles[1].pressed && tiles[2].pressed) {     // top row
+    if ((tiles[0].pressed && tiles[1].pressed && tiles[2].pressed)
+    && (ColorIsEqual(tiles[0].color, tiles[1].color)
+    && (ColorIsEqual(tiles[1].color, tiles[2].color)
+    && (ColorIsEqual(tiles[0].color, tiles[2].color)))))
+    {     // top row
         return true;
     }
 
-    else if (tiles[3].pressed && tiles[4].pressed && tiles[5].pressed) {    // middle row
+    else if ((tiles[3].pressed && tiles[4].pressed && tiles[5].pressed)
+    && (ColorIsEqual(tiles[3].color, tiles[4].color)
+    && (ColorIsEqual(tiles[4].color, tiles[5].color)
+    && (ColorIsEqual(tiles[3].color, tiles[5].color)))))
+    {    // middle row
         return true;
     }
 
-    else if (tiles[6].pressed && tiles[7].pressed && tiles[8].pressed) {    // bottom row
+    else if ((tiles[6].pressed && tiles[7].pressed && tiles[8].pressed)
+        && (ColorIsEqual(tiles[6].color, tiles[7].color)
+        && (ColorIsEqual(tiles[7].color, tiles[8].color)
+        && (ColorIsEqual(tiles[6].color, tiles[8].color)))))
+    {
+        // bottom row
         return true;
     }
-    else if (tiles[0].pressed && tiles[3].pressed && tiles[6].pressed) {    // left column
-        return true;
-    }
-
-    else if (tiles[1].pressed && tiles[4].pressed && tiles[7].pressed) {    // middle column
-        return true;
-    }
-
-    else if (tiles[2].pressed && tiles[5].pressed && tiles[8].pressed) {    // right column
-        return true;
-    }
-
-    else if (tiles[0].pressed && tiles[4].pressed && tiles[8].pressed) {    // cross from top to bottom
+    else if ((tiles[0].pressed && tiles[3].pressed && tiles[6].pressed)
+        && (ColorIsEqual(tiles[0].color, tiles[3].color)
+        && (ColorIsEqual(tiles[3].color, tiles[6].color)
+        && (ColorIsEqual(tiles[0].color, tiles[6].color)))))
+    { // left column
         return true;
     }
 
-    else if (tiles[6].pressed && tiles[4].pressed && tiles[2].pressed) {     // cross from bottom to top
+    else if ((tiles[1].pressed && tiles[4].pressed && tiles[7].pressed)
+        && (ColorIsEqual(tiles[1].color, tiles[4].color)
+        && (ColorIsEqual(tiles[4].color, tiles[7].color)
+        && (ColorIsEqual(tiles[1].color, tiles[7].color)))))
+    { // middle column
         return true;
     }
+
+    else if ((tiles[2].pressed && tiles[5].pressed && tiles[8].pressed)
+        && (ColorIsEqual(tiles[2].color, tiles[5].color)
+        && (ColorIsEqual(tiles[5].color, tiles[8].color)
+        && (ColorIsEqual(tiles[2].color, tiles[8].color)))))
+    { // right column
+            return true;
+        }
+
+    else if ((tiles[0].pressed && tiles[4].pressed && tiles[8].pressed)
+        && (ColorIsEqual(tiles[0].color, tiles[4].color)
+        && (ColorIsEqual(tiles[4].color, tiles[8].color)
+        && (ColorIsEqual(tiles[0].color, tiles[8].color)))))
+    { // cross from top to bottom
+            return true;
+        }
+
+    else if ((tiles[6].pressed && tiles[4].pressed && tiles[2].pressed)
+        && (ColorIsEqual(tiles[6].color, tiles[4].color)
+        && (ColorIsEqual(tiles[4].color, tiles[2].color)
+        && (ColorIsEqual(tiles[6].color, tiles[2].color)))))
+    { // cross from bottom to top
+            return true;
+        }
     else {
         return false;
     }
@@ -67,6 +101,9 @@ int main()
 
     bool done = false;
 
+    Player p1{{GREEN},false,true};
+    Player p2{{PINK},false,false};
+
     while (!WindowShouldClose() && !done)
     {
 
@@ -75,7 +112,16 @@ int main()
 
             for (int i = 0; i < 9; i++) {
                 if (tiles[i].isPressed(mousePosition, mousePressed)) {
-                    tiles[i].color = BLUE;
+                    if (p1.turn) {
+                        tiles[i].color = p1.color;
+                        p1.turn = false;
+                        p2.turn = true;
+                    }
+                    else {
+                        tiles[i].color = p2.color;
+                        p1.turn = true;
+                        p2.turn = false;
+                    }
                     tiles[i].pressed = true;
                 }
             }

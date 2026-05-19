@@ -7,7 +7,9 @@ find_package(raylib CONFIG REQUIRED)
 
 add_executable(tictactoe main.cpp
         button.cpp
-        button.h)
+        button.h
+        player.cpp
+        player.h)
 
 target_link_libraries(tictactoe PRIVATE raylib)
 
