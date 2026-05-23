@@ -74,7 +74,7 @@ bool checkWin(Button tiles[]) {
 
 int main()
 {
-    typedef enum GameScreen { TITLE = 0,GAMEPLAY} GameScreen;
+    typedef enum GameScreen { TITLE = 0,GAMEPLAY, WIN, TIE} GameScreen;
     GameScreen currentScreen = TITLE;
 
     InitWindow(500, 500, "Tic Tac Toe");
@@ -109,14 +109,15 @@ int main()
     Player p1{{GREEN},false,true};
     Player p2{{PINK},false,false};
 
-    while (!WindowShouldClose() && !done)
+    while (!WindowShouldClose())
     {
         switch (currentScreen) {
-            case TITLE:
+            case TITLE: {
                 if (IsKeyPressed(KEY_ENTER)) {
                     currentScreen = GAMEPLAY;
                 }
-            case GAMEPLAY:
+            } break;
+            case GAMEPLAY: {
                 Vector2 mousePosition = GetMousePosition();
                 bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
@@ -141,18 +142,19 @@ int main()
 
                 if (checkWin(tiles)) {
                     if (ColorIsEqual(p1.color, currentColor)) {
-                        std::cout << "PLAYER 1 WINS!" << std::endl;
+                        p1.win = true;
                     }
                     else if (ColorIsEqual(p2.color, currentColor)) {
-                        std::cout << "PLAYER 2 WINS!" << std::endl;
+                        p2.win = true;
                     }
-                    done = true;
+                    currentScreen = WIN;
                 }
 
                 else if (turns >= 9) {
                     std::cout << "TIE!" << std::endl;
-                    done = true;
-                } break;
+                    currentScreen = TIE;
+                }
+            } break;
         }
 
 
@@ -171,6 +173,20 @@ int main()
                         tile.Draw();
                     }
                 } break;
+
+                case WIN: {
+                    if (p1.win) {
+                        DrawText("PLAYER 1 WINS!", 50, 220, 50, DARKGREEN);
+                    }
+                    else {
+                        DrawText("PLAYER 2 WINS!", 50, 220, 50, DARKGREEN);
+                    }
+                } break;
+
+                case TIE: {
+                    DrawText("ITS A TIE!", 100, 220, 50, DARKGREEN);
+                } break;
+
             }
             EndDrawing();
     }
