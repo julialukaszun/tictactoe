@@ -100,6 +100,7 @@ int main()
     Button tiles[9] = {t1,t2,t3,t4,t5,t6,t7,t8,t9};
 
     bool done = false;
+    Color currentColor = {WHITE};
 
     Player p1{{GREEN},false,true};
     Player p2{{PINK},false,false};
@@ -113,11 +114,13 @@ int main()
             for (int i = 0; i < 9; i++) {
                 if (tiles[i].isPressed(mousePosition, mousePressed)) {
                     if (p1.turn) {
+                        currentColor = p1.color;
                         tiles[i].color = p1.color;
                         p1.turn = false;
                         p2.turn = true;
                     }
                     else {
+                        currentColor = p2.color;
                         tiles[i].color = p2.color;
                         p1.turn = true;
                         p2.turn = false;
@@ -127,7 +130,12 @@ int main()
             }
 
             if (checkWin(tiles)) {
-                std::cout << "winner!" << std::endl;
+                if (ColorIsEqual(p1.color, currentColor)) {
+                    std::cout << "PLAYER 1 WINS!" << std::endl;
+                }
+                else if (ColorIsEqual(p2.color, currentColor)) {
+                    std::cout << "PLAYER 2 WINS!" << std::endl;
+                }
                 done = true;
             }
 
