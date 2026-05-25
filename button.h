@@ -3,12 +3,12 @@
 
 class Button {
 public:
-    Button(Vector2 buttonPosition, Vector2 buttonSize, Color buttonColor, bool buttonPressed); //constructor
+    Button(Vector2 buttonPosition, Vector2 buttonSize, Color buttonColor, bool buttonDisabled); //constructor
     ~Button();
     void Draw();
     bool isPressed(Vector2 mousePos, bool mousePressed);
     Color color;
-    bool pressed;
+    bool disabled;
 
 private:
     Vector2 position;
